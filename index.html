@@ -1,12 +1,193 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Sell ETC Safely</title>
-        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
-    </head>
-    <body>
-        <div id='react-app'></div>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-        <script src="js/main.js"></script>
-    </body>
+    <title>Sell ETC Safely</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="assets/css/main.css" rel="stylesheet">
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="assets/js/chart.js"></script>
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div id="hello">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 centered">
+                    <h1>Sell ETC Safely</h1>
+                    <h2>A DAPP to safely split ETH and ETC</h2>
+
+                    <p class="lead">
+                    The hard fork in block 1920000 created two networks: The
+                    forked chain (here referred to as ETH) and the classic chain
+                    (here referred to as ETC). If you had ether in an account
+                    before the hard fork, you now have this amount on both
+                    chains. If you transfer 10 ETH from account A to account B,
+                    then this same transaction can (usually) be replayed on the
+                    other chain as well, and will there move 10 ETC from account
+                    A to account B. You might not want that!
+                    </p>
+
+                    <p class="lead">
+                    This DAPP provides a simple interface to create a
+                    replay-safe transaction. It is a single transaction which is
+                    valid on both chains, but has different effects on each one.
+                    This allows you to move your ETH from account A to account B
+                    and - at the same time - your ETC from account A to account
+                    C. The DAPP charges 1 % on the ETC side for this service. So
+                    you will receive 100 % of your ETH and 99 % of your ETC.
+                    </p>
+                </div><!-- /col-lg-8 -->
+            </div><!-- /row -->
+        </div> <!-- /container -->
+    </div><!-- /hello -->
+
+    <div id="green">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h3>Instructions</h3>
+
+                    <ul>
+                        <li>
+                        Step 1 (optional): Take a look at the
+                        <a href="https://etherscan.io/address/0xc8d9890df1ff2e87be05e9edab3cca26f054b611#code">verified source code</a>
+                        of the splitter contract that will be used. It lives at
+                        address
+                        <a href="https://etherscan.io/address/0xc8d9890df1ff2e87be05e9edab3cca26f054b611">0xc8d9...b611</a>.
+                        The split method is the heart of the contract and you can see, that it will either route the
+                        payment to the destination address for ETH or to the destination address for ETC.
+                        </li>
+
+                        <li>
+                        Step 2: Create an account at <a href="https://poloniex.com/">Poloniex</a>
+                        and go to Balances &gt; Deposits &amp; Withdrawals and request a new deposit
+                        address for Ethereum Classic (ETC).
+                        </lI>
+
+                        <li>
+                        Step 3: Open Mist or start Ethereum Wallet with the flag "--mode mist" and open
+                        this page in the Mist browser. Open the account menu in the upper right corner
+                        and select the account or accounts which you would like to make visible
+                        to the DAPP.
+                        </li>
+
+                        <li>
+                        Step 4: If you have this page open in Mist, you should see a form below which
+                        allows you to prepare the transaction. Select the account from which you want
+                        to send, pick an amount and enter destination addresses for ETH and ETC. Enter
+                        your Poloniex deposit address for ETC and whatever address you like for ETH.
+                        It is recommended to create a new ETH account for this purpose, but it is also
+                        possible to simply send ETH back to the sender account.
+                        </li>
+
+                        <li>
+                        Step 5: Click on "prepare transaction" and double-check the details. Then click
+                        on "sign transaction" and enter your account password.
+                        </li>
+
+                        <li>
+                        Step 6: Wait 5 to 10 minutes for Poloniex to recognize your deposit of ETC.
+                        You are now ready to trade!
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="app">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-3">
+                    <div id="react-app"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="skills">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h3>Additional comments</h3>
+
+                    <ul>
+                        <li>
+                        This DAPP is provided by me, Viktor Novak. I am also the author of
+                        <a href="https://etherdice.io/">Etherdice</a>,
+                        <a href="https://kissbtc.io/">kissBTC^E</a> and
+                        <a href="https://ethereumlottery.io/">Ethereum Lottery</a>.
+                        </li>
+                        <li>
+                        Your transaction needs to be relayed to the ETC network to take
+                        effect there. Currently this seems to automatically happen for
+                        all transactions. If it should stop, it would be necessary
+                        to manually relay it - I'm working on a convenient way to do that,
+                        but for the moment it should not be necessary.
+                        </li>
+                        <li>
+                        The transaction can only be relayed if your accounts on both
+                        chains are still sufficiently in sync. This should usually be the
+                        case, but you might want to check on
+                        <a href="http://etherscan.io/">Etherscan</a> and
+                        <a href="http://gastracker.io/">GasTracker</a> (go directly
+                        to gastracker.io/addr/&lt;your address here&gt; to see your balance
+                        on the ETC chain).
+                        </li>
+                        <li>
+                        Note that Poloniex has a minimum deposit amount of 1 ETC and that
+                        the DAPP takes a 1 % fee. So send at least something like 1.1 ETH/ETC
+                        if you want to test it with a small amount.
+                        </li>
+                        <li>
+                        The destination address can be the same as the sender account. But
+                        this will bring your balance on the two chains out of sync. Keep that
+                        in mind if you want to send multiple transactions. For example: If you start
+                        out with 100 ETH and 100 ETC and then send 1 ETH back to the account and 1 ETC
+                        somewhere else, then the original account now has 100 ETH on the ETH chain
+                        and 99 ETC on the ETC chain. If you now create a transaction which moves 100 ETH,
+                        then it won't be possible to relay it on the ETC chain. So in this case the
+                        second transaction can at most be for an amount of 99.
+                        </li>
+                    </ul>
+                </div>
+            </div><!-- /row -->
+        </div><!-- /container -->
+    </div><!-- /skills -->
+
+    <div id="f">
+        <div class="container">
+            <div class="row">
+                <p>Crafted with <i class="fa fa-heart"></i> by Vik.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="assets/js/bootstrap.js"></script>
+    <script src="js/main.js"></script>
+  </body>
 </html>
